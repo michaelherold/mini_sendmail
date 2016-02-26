@@ -1,0 +1,3 @@
+# mini-sendmail is used for chroot environments, we
+# actually want to link it statically, not an error
+mini-sendmail binary: statically-linked-binary
