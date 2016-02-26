@@ -1,0 +1,10 @@
+Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: mini-sendmail
+Upstream-Contact: https://github.com/sts/mini_sendmail
+Source: https://github.com/sts/mini_sendmail
+
+Files: *
+License: BSD-2-clause
+ Couldn't reach the author but someone seems to have specified the BSD license
+ when filing the RFP/ITP - So its MISSING!
+Copyright: Copyright 1999,2015 by Jef Poskanzer <jef@mail.acme.com>
