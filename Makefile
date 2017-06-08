@@ -9,13 +9,13 @@ LDFLAGS += -s -static
 SRC = mini_sendmail.c
 OBJ = $(SRC:.c=.o)
 
+all: mini_sendmail
+
 VPATH = src
 
 include Sourcedeps
 
 $(OBJ): Makefile
-
-all: mini_sendmail
 
 clean:
 	rm -f $(OBJ) mini_sendmail
