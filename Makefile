@@ -3,11 +3,8 @@ BINPREFIX ?= $(PREFIX)/bin
 MANPREFIX ?= $(PREFIX)/share/man
 DESTDIR   ?= _build
 
-CFLAGS  = -O -ansi -pedantic -U__STRICT_ANSI__ -Wall -Wpointer-arith \
-          -Wshadow -Wcast-qual -Wcast-align -Wstrict-prototypes \
-          -Wmissing-prototypes -Wmissing-declarations -Wredundant-decls \
-          -Wno-long-long
-LDFLAGS = -s -static
+CFLAGS  += -O -ansi -pedantic -U__STRICT_ANSI__ -Wall -Wextra -std=c99
+LDFLAGS += -s -static
 
 SRC = mini_sendmail.c
 OBJ = $(SRC:.c=.o)
