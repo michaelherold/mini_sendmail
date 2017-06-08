@@ -534,37 +534,56 @@ parse_for_recipients( char* message )
 
 
 static void
-add_recipient( char* recipient, int len )
+add_recipient( char* cursor, int length )
 {
 	char buf[1000];
 	int status;
+	int double_check_position;
+	int final_shift = 0;
 
 	/* Skip leading whitespace. */
-	while ( len > 0 && ( *recipient == ' ' || *recipient == '\t' ) )
+	while ( length > 0 && ( *cursor == ' ' || *cursor == '\t' ) )
 	{
-		++recipient;
-		--len;
+		++cursor;
+		--length;
 	}
 
-	/* Strip off any angle brackets. */
-	while ( len > 0 && *recipient == '<' )
+	/* Strip off any beginning angle brackets. */
+	while ( length > 0 && *cursor == '<' )
 	{
-		++recipient;
-		--len;
+		++cursor;
+		--length;
 	}
-	while ( len > 0 && recipient[len-1] == '>' )
-		--len;
 
-	(void) snprintf( buf, sizeof(buf), "RCPT TO:<%.*s>", len, recipient );
+	/* Double-check that we don't have any more beginning angle brackets. */
+	for (double_check_position = 0; double_check_position < length; ++double_check_position)
+	{
+		if ( *( cursor + double_check_position ) == '<' )
+		{
+			final_shift = double_check_position + 1;
+		}
+	}
+	cursor += final_shift;
+	length -= final_shift;
+
+	/* Strip off any ending angle brackets. */
+	while ( length > 0 && cursor[length - 1] == '>' )
+	{
+		--length;
+	}
+
+	(void) snprintf( buf, sizeof(buf), "RCPT TO:<%.*s>", length, cursor );
 	send_command( buf );
 	status = read_response();
-	if ( status != 250  && status != 251 )
+
+	if ( status != 250 && status != 251 )
 	{
 		(void) fprintf(
-				stderr,  "%s: unexpected response %d to RCPT TO command\n",
+				stderr, "%s: unexpected response %d to RCPT TO command\n",
 				argv0, status );
 		exit( 1 );
 	}
+
 	got_a_recipient = 1;
 }
 
