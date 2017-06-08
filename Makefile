@@ -6,17 +6,16 @@ CFLAGS  = -O -ansi -pedantic -U__STRICT_ANSI__ -Wall -Wpointer-arith \
           -Wmissing-prototypes -Wmissing-declarations -Wredundant-decls \
           -Wno-long-long
 LDFLAGS = -s -static
-LDLIBS  = $(SYSV_LIBS)
 
 CC := $(DIET) $(CC)
 
 all: mini_sendmail
 
-diet:
-	make DIET=diet mini_sendmail
+clean:
+	rm -f mini_sendmail *.o core core.* *.core
 
 mini_sendmail: mini_sendmail.o
-	$(CC) $(LDFLAGS) mini_sendmail.o $(LDLIBS) -o mini_sendmail
+	$(CC) $(LDFLAGS) mini_sendmail.o -o mini_sendmail
 
 mini_sendmail.o: mini_sendmail.c version.h
 	$(CC) $(CFLAGS) -c mini_sendmail.c
@@ -26,16 +25,3 @@ install: all
 	cp mini_sendmail $(BINDIR)
 	rm -f $(MANDIR)/man8/mini_sendmail.8
 	cp mini_sendmail.8 $(MANDIR)/man8
-
-clean:
-	rm -f mini_sendmail *.o core core.* *.core
-
-tar:
-	@name=`sed -n -e '/#define MINI_SENDMAIL_VERSION /!d' -e 's,.*mini_sendmail/,mini_sendmail-,' -e 's, .*,,p' version.h` ; \
-	  rm -rf $$name ; \
-	  mkdir $$name ; \
-	  tar cf - `cat FILES` | ( cd $$name ; tar xfBp - ) ; \
-	  chmod 644 $$name/Makefile ; \
-	  tar cf $$name.tar $$name ; \
-	  rm -rf $$name ; \
-	  gzip $$name.tar
