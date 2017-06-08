@@ -1,2 +1,3 @@
 *.o
 mini_sendmail
+_build/
