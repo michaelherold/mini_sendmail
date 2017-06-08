@@ -1,26 +1,32 @@
-BINDIR  = /usr/local/sbin
-MANDIR  = /usr/local/man
-CC      = cc
+PREFIX    ?= /usr/local
+BINPREFIX ?= $(PREFIX)/bin
+MANPREFIX ?= $(PREFIX)/share/man
+DESTDIR   ?= _build
+
 CFLAGS  = -O -ansi -pedantic -U__STRICT_ANSI__ -Wall -Wpointer-arith \
           -Wshadow -Wcast-qual -Wcast-align -Wstrict-prototypes \
           -Wmissing-prototypes -Wmissing-declarations -Wredundant-decls \
           -Wno-long-long
 LDFLAGS = -s -static
-VPATH   = src
 
-CC := $(DIET) $(CC)
+SRC = mini_sendmail.c
+OBJ = $(SRC:.c=.o)
+
+VPATH = src
+
+include Sourcedeps
+
+$(OBJ): Makefile
 
 all: mini_sendmail
 
 clean:
-	rm -f mini_sendmail *.o core core.* *.core
+	rm -f $(OBJ) mini_sendmail
 
-mini_sendmail: mini_sendmail.o
-
-mini_sendmail.o: mini_sendmail.c version.h
+mini_sendmail: $(OBJ)
 
 install: all
-	rm -f $(BINDIR)/mini_sendmail
-	cp mini_sendmail $(BINDIR)
-	rm -f $(MANDIR)/man8/mini_sendmail.8
-	cp doc/mini_sendmail.8 $(MANDIR)/man8
+	mkdir -p "$(DESTDIR)$(BINPREFIX)"
+	cp -pf mini_sendmail "$(DESTDIR)$(BINPREFIX)"
+	mkdir -p "$(DESTDIR)$(MANPREFIX)"/man8
+	cp doc/mini_sendmail.8 "$(DESTDIR)$(MANPREFIX)"/man8
