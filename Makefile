@@ -27,3 +27,5 @@ install: all
 	cp -pf mini_sendmail "$(DESTDIR)$(BINPREFIX)"
 	mkdir -p "$(DESTDIR)$(MANPREFIX)"/man8
 	cp doc/mini_sendmail.8 "$(DESTDIR)$(MANPREFIX)"/man8
+
+.PHONY: all clean install
