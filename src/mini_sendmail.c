@@ -79,6 +79,7 @@ static int got_a_recipient;
 
 /* Forwards. */
 static void usage( void );
+static void version ( void );
 static char* slurp_message( void );
 #ifdef DO_RECEIVED
 static char* make_received( char* from, char* username, char* hostname );
@@ -135,6 +136,8 @@ main( int argc, char** argv )
 		else if ( strncmp( argv[argn], "-p", 2 ) == 0 && argv[argn][2] != '\0' )
 			port = atoi( &(argv[argn][2]) );
 #endif /* DO_MINUS_SP */
+		else if ( strcmp( argv[argn], "--version" ) == 0 )
+			version();
 		else if ( strncmp( argv[argn], "-T", 2 ) == 0 && argv[argn][2] != '\0' )
 			timeout = atoi( &(argv[argn][2]) );
 		else if ( strcmp( argv[argn], "-v" ) == 0 )
@@ -296,7 +299,14 @@ usage( void )
 #else /* DO_MINUS_SP */
 	char* spflag = "";
 #endif /* DO_MINUS_SP */
-	(void) fprintf( stderr, "usage:  %s [-f<name>] [-t] %s[-T<timeout>] [-v] [address ...]\n", argv0, spflag );
+	(void) fprintf( stderr, "mini_sendmail %s\n\nusage:  %s [-f<name>] [-t] %s[-T<timeout>] [-v] [address ...]\n", MINI_SENDMAIL_BUILD, argv0, spflag );
+	exit( 1 );
+}
+
+static void
+version ( void )
+{
+	(void) fprintf( stderr, "mini_sendmail %s\n", MINI_SENDMAIL_BUILD );
 	exit( 1 );
 }
 

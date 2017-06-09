@@ -1,9 +1,14 @@
+VERCMD    ?= git describe 2> /dev/null
+VERSION   := $(shell $(VERCMD) || cat VERSION)
+BUILDDATE := $(date "+%Y-%m-%d")
+BUILD     := "$(VERSION) $(BUILDDATE)"
+
 PREFIX    ?= /usr/local
 BINPREFIX ?= $(PREFIX)/bin
 MANPREFIX ?= $(PREFIX)/share/man
 DESTDIR   ?= _build
 
-CFLAGS  += -O -ansi -pedantic -U__STRICT_ANSI__ -Wall -Wextra -std=c99
+CFLAGS  += -O -ansi -pedantic -U__STRICT_ANSI__ -Wall -Wextra -std=c99 -DMINI_SENDMAIL_BUILD=\"${BUILD}\"
 LDFLAGS += -s -static
 
 SRC = mini_sendmail.c
