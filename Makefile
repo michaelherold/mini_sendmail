@@ -19,6 +19,7 @@ $(OBJ): Makefile
 
 clean:
 	rm -f $(OBJ) mini_sendmail
+	rm -rf ./_build
 
 mini_sendmail: $(OBJ)
 
