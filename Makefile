@@ -29,4 +29,7 @@ install: all
 	mkdir -p "$(DESTDIR)$(MANPREFIX)"/man8
 	cp doc/mini_sendmail.8 "$(DESTDIR)$(MANPREFIX)"/man8
 
-.PHONY: all clean install
+test: all
+	bats test
+
+.PHONY: all clean install test
