@@ -851,7 +851,7 @@ send_done( void )
 
 
 static void
-sigcatch( int sig )
+sigcatch( int __attribute__((unused)) sig )
 {
 	(void) fprintf( stderr, "%s: timed out\n", argv0 );
 	exit( 1 );
