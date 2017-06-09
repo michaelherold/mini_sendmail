@@ -11,7 +11,7 @@ Package: mini-sendmail
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Homepage: https://wiki.mattrude.com/Mini_sendmail
-Description: A simple application for sending SMTP email in a chroot
+Description: Send SMTP email from a chroot
  Reads its standard input up to an end-of-file and sends a copy of the
  message found there to all of the addresses listed. The message is sent
  by connecting to a local SMTP server. This means mini_sendmail can be
