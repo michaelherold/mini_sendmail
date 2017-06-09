@@ -1,3 +1,9 @@
+mini-sendmail (1.3.10) stable; urgency=low
+
+  * Relaxed the requirements for a recipient to work around bad input from PHP.
+
+ -- Michael Herold <michael.herold@getflywheel.com>  Fri, 09 Jun 2017 15:06:19 -0500
+
 mini-sendmail (1.3.9) stable; urgency=low
 
   * Initial packaging work

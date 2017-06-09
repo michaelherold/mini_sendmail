@@ -1,18 +1,18 @@
 Source: mini-sendmail
 Section: mail
 Priority: extra
-Maintainer: Stefan Schlesinger <sts@ono.at>
-Build-Depends: debhelper (>= 7.0.50~)
+Maintainer: Michael Herold <michael.herold@getflywheel.com>
+Build-Depends: debhelper (>= 9)
 Standards-Version: 3.9.4
-Vcs-Browser: https://github.com/sts/mini_sendmail
-Vcs-Git: https://github.com/sts/mini_sendmail.git -b master
+Vcs-Browser: https://github.com/getflywheel/mini_sendmail
+Vcs-Git: https://github.com/getflywheel/mini_sendmail.git -b master
 
 Package: mini-sendmail
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Homepage: https://wiki.mattrude.com/Mini_sendmail
-Description: Reads its standard input up to an end-of-file and sends a copy of the
+Description: A simple application for sending SMTP email in a chroot
+ Reads its standard input up to an end-of-file and sends a copy of the
  message found there to all of the addresses listed. The message is sent
  by connecting to a local SMTP server. This means mini_sendmail can be
  used to send email from inside a chroot(2) area.
-
