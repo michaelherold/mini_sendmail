@@ -34,7 +34,10 @@ install: all
 	mkdir -p "$(DESTDIR)$(MANPREFIX)"/man8
 	cp doc/mini_sendmail.8 "$(DESTDIR)$(MANPREFIX)"/man8
 
+package:
+	dpkg-buildpackage -us -uc
+
 test: all
 	bats test
 
-.PHONY: all clean install test
+.PHONY: all clean install package test
