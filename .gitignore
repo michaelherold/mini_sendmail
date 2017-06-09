@@ -1,3 +1,7 @@
 *.o
+*.log
 mini_sendmail
 _build/
+debian/files
+debian/debhelper-build-stamp
+debian/mini-sendmail*
