@@ -1,5 +1,5 @@
      mini_sendmail - accept email on behalf of real sendmail
-                   version 1.3.9 of 19Oct2015
+                   version 1.3.10 (2017-06-07)
 
 mini_sendmail reads its standard input up to an end-of-file and
 sends a copy of the message found there to all of the addresses
@@ -11,10 +11,10 @@ See the manual entry for more details.
 
 Files in this distribution:
 
-    README		this
-    Makefile		guess
-    mini_sendmail.c	source file
-    mini_sendmail.8	manual entry
+    README          this file
+    Makefile        build tasks
+    mini_sendmail.c source file
+    mini_sendmail.8 manual entry
 
 To build: If you're on a SysV-like machine (which includes old Linux systems
 but not new Linux systems), edit the Makefile and uncomment the SYSV_LIBS
@@ -37,14 +37,14 @@ elsewhere.  Here's what a successful test run might look like:
     <<<< 250 RAA58877 Message accepted for delivery
     >>>> QUIT
     <<<< 221 gate.acme.com closing connection
-    % 
+    %
 
 And here's an unsuccessful run where there's no local sendmail
 daemon running:
 
     % echo 'Subject: test' | ./mini_sendmail -v jef@mail.acme.com
     ./mini_sendmail: connect: Connection refused
-    % 
+    %
 
 
 Feedback is welcome - send bug reports, enhancements, checks, money
