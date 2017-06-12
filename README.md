@@ -1,5 +1,18 @@
 # mini_sendmail (Flywheel Edition)
 
+`mini_sendmail` is a tiny implementation of `sendmail` that can be copied in the
+Flywheel `chroot` on our customers’ instances. It is the interface that PHP
+talks to in order to send email. Our architecture looks like this:
+
+```
+|-----|        |---------------|        |---------|        |----------|
+| PHP |  --->  | mini_sendmail |  --->  | postfix |  --->  | SendGrid |
+|-----|        |---------------|        |---------|        |----------|
+```
+
+Below, you will find documentation on how to build our `mini_sendmail` package
+and update our Chef release with it.
+
 ## Requirements
 
 To build this package, you need the GCC toolchain. Without doing a bunch of
