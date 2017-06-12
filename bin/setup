@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+set -e
+
+export DEBIAN_FRONTEND=noninteractive
+
+sudo apt-get update -q
+sudo -E apt-get install -q -y bats build-essential debhelper postfix
